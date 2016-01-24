@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+{% block body %}
+    <p>{{ company }}'s Rank in {{ project_type.capitalize() }}: {{ rank['index'] }} - with {{ rank['metric'] }} Commits.</p>
+    <p>{{ weeks }} weeks left until {{ release.capitalize() }} Feature Freeze</p>
+    <ul class=entries>
+        <table border="1px solid black" ; border-spacing="5px" ; border-collapse="collapse">
+            <tr>
+                <th>Commits</th>
+                {% for p in projects %}
+                    <th>{{ p['id'] }}</th>
+                {% endfor %}
+            </tr>
+           <tr>
+                <th> Has Core Reviewer </th>
+                {% for p in projects %}
+                        <td>
+                            {% autoescape off %} {{ p['has_core'] }} {% endautoescape %}
+                        </td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <th> More than 10 Commits</th>
+                {% for p in projects %}
+                        <td>
+                            {% autoescape off %} {{ p['gt_10_stats'] }} {% endautoescape %}
+                        </td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <th> Less than 10 Commits</th>
+                {% for p in projects %}
+                        <td>
+                            {% autoescape off %} {{ p['lt_10_stats'] }} {% endautoescape %}
+                        </td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <th> Rank </th>
+                {% for p in projects %}
+                        <th>
+                            {% autoescape off %} {{ p['rank'] }} {% endautoescape %}
+                        </th>
+                {% endfor %}
+            </tr>
+        </table>
+
+        </div>
+
+    </ul>
+{% endblock %}
